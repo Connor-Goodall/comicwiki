@@ -27,6 +27,7 @@ class superheroBiography(models.Model):
     birthPlace = models.CharField(max_length = 100)
     firstAppearance = models.CharField(max_length = 250)
     publisher = models.CharField(max_length = 100)
+    alignment = models.CharField(max_length = 50, default = "neutral")
 
 class superheroWork(models.Model):
     name = models.CharField(max_length = 100)
