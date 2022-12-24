@@ -8,7 +8,7 @@ def index(request):
     ironman = superheroImages.objects.filter(name = "Iron Man")
     spiderman = superheroImages.objects.filter(name = "Spider-Man")
     captain_america = superheroImages.objects.filter(name = "Captain America")
-    batman = superheroImages.objects.filter(name = "Batman")
+    batman = superheroImages.objects.filter(name = "Batman (Bruce Wayne)")
     superman = superheroImages.objects.filter(name = "Superman")
     wonderWoman = superheroImages.objects.filter(name = "Wonder Woman")
     return render(request, 'index.html', {'spiderman': spiderman[0], 'ironman': ironman[0], 'captain': captain_america[0],
@@ -16,18 +16,42 @@ def index(request):
 
 def gettingAPI():
     superheroData = []
+    superheroDict = dict()
     for i in range(731):
         number = i + 1
         superhero = requests.get(f"https://akabab.github.io/superhero-api/api/id/{number}.json")
-        if(superhero.status_code != 404):
+        if (superhero.status_code != 404):
             jsonSuperheroData = json.loads(superhero.text)
+            if (jsonSuperheroData["biography"]["fullName"] == ""):
+                jsonSuperheroData["biography"]["fullName"] = "Unknown"
+            if ("III" in jsonSuperheroData["name"]):
+                jsonSuperheroData["name"] = jsonSuperheroData["name"].replace("III", "(" +
+                                                                              jsonSuperheroData["biography"]["fullName"]
+                                                                              + ")")
+            elif ("II" in jsonSuperheroData["name"]):
+                jsonSuperheroData["name"] = jsonSuperheroData["name"].replace("II", "(" +
+                                                                              jsonSuperheroData["biography"]["fullName"]
+                                                                              + ")")
+            elif (" IV" in jsonSuperheroData["name"]):
+                jsonSuperheroData["name"] = jsonSuperheroData["name"].replace(" IV", " (" +
+                                                                              jsonSuperheroData["biography"]["fullName"]
+                                                                              + ")")
+            elif ("VI" in jsonSuperheroData["name"]):
+                jsonSuperheroData["name"] = jsonSuperheroData["name"].replace("VI", "(" +
+                                                                              jsonSuperheroData["biography"]["fullName"]
+                                                                              + ")")
+            if (jsonSuperheroData["name"] in superheroDict):
+                superheroData[len(superheroData) - 1]["name"] = superheroData[len(superheroData) - 1]["name"] + " (" + \
+                                               superheroData[len(superheroData) - 1]["biography"]["fullName"] + ")"
+                jsonSuperheroData["name"] = jsonSuperheroData["name"] + " (" + jsonSuperheroData["biography"][
+                    "fullName"] + ")"
+            superheroDict[jsonSuperheroData["name"]] = True
             superheroData.append(jsonSuperheroData)
     return superheroData
 
 
 
 def characterInfo(request, name):
-    print("WHY THO")
     characterImage = superheroImages.objects.filter(name = name)
     characterAppearance = superheroAppearance.objects.filter(name = name)
     characterWork = superheroWork.objects.filter(name = name)
