@@ -13,13 +13,13 @@
         <a class="nav-link" href="{% url 'comics:index' %}" style = "font-family: Garamond" >Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#" style = "font-family: Garamond" >All Characters</a>
+        <a class="nav-link" href="{% url 'comics:allCharacters' %}" style = "font-family: Garamond" >All Characters</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#" style = "font-family: Garamond" >Marvel Comics</a>
+        <a class="nav-link" href="{% url 'comics:marvelCharacters' %}" style = "font-family: Garamond" >Marvel Comics</a>
       </li>
         <li class="nav-item">
-        <a class="nav-link" href="#" style = "font-family: Garamond" >DC Comics</a>
+        <a class="nav-link" href="{% url 'comics:dcCharacters' %}" style = "font-family: Garamond" >DC Comics</a>
       </li>
          <li class="nav-item">
         <a class="nav-link" href="#" style = "font-family: Garamond" >Other Comics</a>
@@ -28,10 +28,6 @@
         <a class="nav-link" href="#" style = "font-family: Garamond" >Log-In</a>
       </li>
     </ul>
-    <input class="form-inline my-2 my-lg-0">
-        </input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
   </div>
 </nav>
     <div class="accordion-body" style = "text-align: center; font-family: Garamond, serif; font-size: 40px">

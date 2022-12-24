@@ -5,7 +5,14 @@ from .models import superheroPowerstats, superheroAppearance, superheroBiography
 import json
 # Create your views here.
 def index(request):
-    return render(request, 'index.html', {})
+    ironman = superheroImages.objects.filter(name = "Iron Man")
+    spiderman = superheroImages.objects.filter(name = "Spider-Man")
+    captain_america = superheroImages.objects.filter(name = "Captain America")
+    batman = superheroImages.objects.filter(name = "Batman")
+    superman = superheroImages.objects.filter(name = "Superman")
+    wonderWoman = superheroImages.objects.filter(name = "Wonder Woman")
+    return render(request, 'index.html', {'spiderman': spiderman[0], 'ironman': ironman[0], 'captain': captain_america[0],
+                                          'batman': batman[0], 'superman': superman[0], 'wonderWoman': wonderWoman[0]})
 
 def gettingAPI():
     superheroData = []
@@ -18,7 +25,9 @@ def gettingAPI():
     return superheroData
 
 
+
 def characterInfo(request, name):
+    print("WHY THO")
     characterImage = superheroImages.objects.filter(name = name)
     characterAppearance = superheroAppearance.objects.filter(name = name)
     characterWork = superheroWork.objects.filter(name = name)
@@ -28,6 +37,21 @@ def characterInfo(request, name):
     return render(request, 'characterInfo.html', {'biography': characterBiography[0], 'image': characterImage[0],
                                                   'appearance': characterAppearance[0], 'work': characterWork[0],
                                                   'connections': characterConnections[0], 'powerstats': characterPowerstats[0]})
+
+def allCharacters(request):
+    character_set = superheroBiography.objects.all()
+    return render(request, 'allCharacters.html', {'characters': character_set})
+
+
+def marvelCharacters(request):
+    good_marvel_set = superheroBiography.objects.filter(publisher = "Marvel Comics", alignment = "good")
+    bad_marvel_set = superheroBiography.objects.filter(publisher = "Marvel Comics", alignment = "bad")
+    return render(request, 'marvelCharacters.html', {'goodMarvelCharacters': good_marvel_set, 'badMarvelCharacters':
+        bad_marvel_set})
+def dcCharacters(request):
+    good_dc_set = superheroBiography.objects.filter(publisher = "DC Comics", alignment = "good")
+    bad_dc_set = superheroBiography.objects.filter(publisher = "DC Comics", alignment = "bad")
+    return render(request, 'dcCharacters.html', {'goodDCCharacters': good_dc_set, 'badDCCharacters': bad_dc_set})
 def createSuperhero():
     data = gettingAPI()
     for superhero in data:

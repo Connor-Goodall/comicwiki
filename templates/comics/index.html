@@ -13,13 +13,13 @@
         <a class="nav-link" href="{% url 'comics:index' %}" style = "font-family: Garamond" >Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#" style = "font-family: Garamond" >All Characters</a>
+        <a class="nav-link" href="{% url 'comics:allCharacters' %}" style = "font-family: Garamond" >All Characters</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#" style = "font-family: Garamond" >Marvel Comics</a>
+        <a class="nav-link" href="{% url 'comics:marvelCharacters' %}" style = "font-family: Garamond" >Marvel Comics</a>
       </li>
         <li class="nav-item">
-        <a class="nav-link" href="#" style = "font-family: Garamond" >DC Comics</a>
+        <a class="nav-link" href="{% url 'comics:dcCharacters' %}" style = "font-family: Garamond" >DC Comics</a>
       </li>
          <li class="nav-item">
         <a class="nav-link" href="#" style = "font-family: Garamond" >Other Comics</a>
@@ -28,10 +28,6 @@
         <a class="nav-link" href="#" style = "font-family: Garamond" >Log-In</a>
       </li>
     </ul>
-    <input class="form-inline my-2 my-lg-0">
-        </input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
   </div>
 </nav>
    <head>
@@ -39,4 +35,49 @@
   <p class="d-flex justify-content-center" style="margin-bottom: 5%; font-size: 30px; color: DarkSlateBlue; text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;"> Wiki
    for Comic Characters </p>
 </head>
+<div class="text-md-left" style = "font-family: Garamond, serif; font-size: 30px; position: relative; left: 50px;">
+  Popular Marvel Characters
+</div>
+  <img class = "accordion-body" style="border-radius: 15%; position: relative; left: 100px;" src="{{ironman.medium}}" width="200" height="250">
+<div class="text-md-left" style = "font-family: Garamond, serif; font-size: 30px;">
+ <a href="/comics/{{ironman.name}}" class = "text-decoration-none" style = "position: relative; left: 150px;">
+            {{ironman.name}}
+    </a>
+</div>
+   <img class = "accordion-body" style="border-radius: 15%; position: relative; left: 100px;" src="{{captain.medium}}" width="200" height="250">
+<div class="text-md-left" style = "font-family: Garamond, serif; font-size: 30px;">
+ <a href="/comics/{{captain.name}}" class = "text-decoration-none" style = "position: relative; left: 105px;">
+            {{captain.name}}
+    </a>
+</div>
+  <img class = "accordion-body" style="border-radius: 15%; position: relative; left: 100px;" src="{{spiderman.medium}}" width="200" height="250">
+<div class="text-md-left" style = "font-family: Garamond, serif; font-size: 30px;">
+ <a href="/comics/{{spiderman.name}}" class = "text-decoration-none" style = "position: relative; left: 130px;">
+            {{spiderman.name}}
+    </a>
+</div>
+  <div class="text-md-left" style = "font-family: Garamond, serif; font-size: 30px; position: relative; left: 475px; top: -930px;">
+  Popular DC Characters
+</div>
+    <img class = "accordion-body" style="border-radius: 15%; position: relative; left: 510px; top: -930px;" src="{{batman.medium}}" width="200" height="250">
+<div class="text-md-left" style = "font-family: Garamond, serif; font-size: 30px;">
+ <a href="/comics/{{batman.name}}" class = "text-decoration-none" style = "position: relative; left: 560px; top: -930px;">
+            {{batman.name}}
+    </a>
+</div>
+    <img class = "accordion-body" style="border-radius: 15%; position: relative; left: 510px; top: -930px;" src="{{superman.medium}}" width="200" height="250">
+<div class="text-md-left" style = "font-family: Garamond, serif; font-size: 30px;">
+ <a href="/comics/{{superman.name}}" class = "text-decoration-none" style = "position: relative; left: 550px; top: -930px;">
+            {{superman.name}}
+    </a>
+</div>
+    <img class = "accordion-body" style="border-radius: 15%; position: relative; left: 510px; top: -930px;" src="{{wonderWoman.medium}}" width="200" height="250">
+<div class="text-md-left" style = "font-family: Garamond, serif; font-size: 30px;">
+ <a href="/comics/{{wonderWoman.name}}" class = "text-decoration-none" style = "position: relative; left: 525px; top: -930px;">
+            {{wonderWoman.name}}
+    </a>
+</div>
+<div class="text-md-left" style = "font-family: Garamond, serif; font-size: 30px; position: relative; left: 825px; top: -1860px;">
+  Popular Other Comic Characters
+</div>
 </div>
