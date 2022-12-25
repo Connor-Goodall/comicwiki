@@ -80,6 +80,14 @@ def dcCharacters(request):
     good_dc_set = superheroBiography.objects.filter(publisher = "DC Comics", alignment = "good")
     bad_dc_set = superheroBiography.objects.filter(publisher = "DC Comics", alignment = "bad")
     return render(request, 'dcCharacters.html', {'goodDCCharacters': good_dc_set, 'badDCCharacters': bad_dc_set})
+
+def otherCharacters(request):
+    lucasfilm = superheroBiography.objects.filter(publisher = "George Lucas")
+    startrek = superheroBiography.objects.filter(publisher = "Star Trek")
+    manga = superheroBiography.objects.filter(publisher = "Shueisha")
+    darkHorse = superheroBiography.objects.filter(publisher = "Dark Horse Comics")
+    return render(request, 'otherCharacters.html', {'lucasfilmCharacters': lucasfilm, 'startrekCharacters': startrek,
+                                                    'mangaCharacters': manga, 'darkHorseCharacters': darkHorse})
 def createSuperhero():
     data = gettingAPI()
     for superhero in data:

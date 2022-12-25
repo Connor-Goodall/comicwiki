@@ -6,5 +6,6 @@ urlpatterns = [
     path('allcharacters/', views.allCharacters, name='allCharacters'),
     path('marvelcharacters/', views.marvelCharacters, name = 'marvelCharacters'),
     path('dccharacters/', views.dcCharacters, name = 'dcCharacters'),
+    path('othercharacters/', views.otherCharacters, name = 'otherCharacters'),
     path('<name>/', views.characterInfo, name='characterInfo'),
 ]
