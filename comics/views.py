@@ -11,8 +11,12 @@ def index(request):
     batman = superheroImages.objects.filter(name = "Batman (Bruce Wayne)")
     superman = superheroImages.objects.filter(name = "Superman")
     wonderWoman = superheroImages.objects.filter(name = "Wonder Woman")
+    darthVader = superheroImages.objects.filter(name = "Darth Vader")
+    goku = superheroImages.objects.filter(name = "Goku")
+    onePunchMan = superheroImages.objects.filter(name = "One Punch Man")
     return render(request, 'index.html', {'spiderman': spiderman[0], 'ironman': ironman[0], 'captain': captain_america[0],
-                                          'batman': batman[0], 'superman': superman[0], 'wonderWoman': wonderWoman[0]})
+                                          'batman': batman[0], 'superman': superman[0], 'wonderWoman': wonderWoman[0],
+                                          'darthVader': darthVader[0], 'goku': goku[0], 'onePunchMan': onePunchMan[0]})
 
 def gettingAPI():
     superheroData = []
