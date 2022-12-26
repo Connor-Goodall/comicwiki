@@ -28,6 +28,17 @@
         <a class="nav-link" href="#" style = "font-family: Garamond" >Log-In</a>
       </li>
     </ul>
+      <form class="form-inline my-2 my-lg-0" action = "{% url 'comics:searchResults' %}", method = "get">
+           <div class="input-group mb-1">
+                    <input name = "result" type="text" class="form-control"
+                      placeholder="Search">
+                   <button class="btn btn-dark"
+                     type="submit"
+                     id="addon-btn" formaction = "{% url 'comics:searchResults' %}">
+                     Search
+                   </button>
+          </div>
+</form>
   </div>
 </nav>
     <div class="text-decoration-underline" style = "font-family: Garamond, serif; font-size: 40px; text-align: center;">
