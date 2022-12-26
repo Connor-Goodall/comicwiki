@@ -3,6 +3,8 @@ from django.http import HttpResponse
 import requests
 from .models import superheroPowerstats, superheroAppearance, superheroBiography, superheroWork, superheroConnections, superheroImages
 import json
+from django.views.generic import ListView
+from django.db.models import Q
 # Create your views here.
 def index(request):
     ironman = superheroImages.objects.filter(name = "Iron Man")
@@ -140,3 +142,12 @@ def createSuperhero():
         oneWork.save()
         oneConnection.save()
         oneImage.save()
+class SearchResultsView(ListView):
+    model = superheroImages
+    template_name ='searchResults.html'
+    def get_queryset(self):
+        query = self.request.GET.get("result")
+        object_list = superheroImages.objects.filter(
+            Q(name__contains=query)
+        )
+        return object_list
