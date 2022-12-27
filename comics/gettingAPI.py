@@ -39,5 +39,37 @@ def gettingAPI():
             superheroData.append(jsonSuperheroData)
     return superheroData
 data = gettingAPI()
-print(data)
+heightList = data["appearance"]["height"]
+height = ""
+for heightNumber in range(len(heightList)):
+    height += heightList[heightNumber]
+    if(heightNumber != len(heightList) - 1):
+        height += " or "
+weightList = data["appearance"]["weight"]
+weight = ""
+for weightNumber in range(len(weightList)):
+    weight += weightList[weightNumber]
+    if(weightNumber != len(weightList) - 1):
+        weight += " or "
+eyeColor = data["appearance"]["eyeColor"]
+hairColor = data["appearance"]["hairColor"]
+fullName = data["biography"]["fullName"]
+alterEgos = data["biography"]["alterEgos"]
+aliasList = data["biography"]["aliases"]
+aliases = ""
+for aliasNumber in range(len(aliasList)):
+    aliases += aliasList[aliasNumber]
+    if(aliasNumber != len(aliasList) - 1):
+        aliases += ", "
+placeOfBirth = data["biography"]["placeOfBirth"]
+firstAppearance = data["biography"]["firstAppearance"]
+publisher = data["biography"]["publisher"]
+alignment = data["biography"]["alignment"]
+occupation = data["work"]["occupation"]
+base = data["work"]["base"]
+groupAffiliation = data["connections"]["groupAffiliation"]
+relatives = data["connections"]["relatives"]
+small_picture = data["images"]["sm"]
+medium_picture = data["images"]["md"]
+large_picture = data["images"]['lg']
 
