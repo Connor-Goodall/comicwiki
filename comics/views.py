@@ -46,6 +46,11 @@ def gettingAPI():
                 jsonSuperheroData["name"] = jsonSuperheroData["name"].replace("VI", "(" +
                                                                               jsonSuperheroData["biography"]["fullName"]
                                                                               + ")")
+            elif (" V" in jsonSuperheroData["name"] and "V" == jsonSuperheroData["name"][
+                    len(jsonSuperheroData["name"]) - 1]):
+                jsonSuperheroData["name"] = jsonSuperheroData["name"].replace(" V", " (" +
+                                                                              jsonSuperheroData["biography"]["fullName"]
+                                                                              + ")")
             if (jsonSuperheroData["name"] in superheroDict):
                 superheroData[len(superheroData) - 1]["name"] = superheroData[len(superheroData) - 1]["name"] + " (" + \
                                                superheroData[len(superheroData) - 1]["biography"]["fullName"] + ")"
