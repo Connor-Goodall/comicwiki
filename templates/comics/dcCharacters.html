@@ -1,46 +1,6 @@
-<!DOCTYPE html>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<div class="background container-fluid" style="height: 500vh; overflow: hidden; background: #DC143C; background: -webkit-linear-gradient(to right, #DC143C, #8B0000); background: linear-gradient(to right, #DC143C, #8B0000);">
-<nav class="navbar navbar-expand-lg navbar-light navbar border border-dark    " style="border-radius: 10px; border-color:black">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a class="navbar-brand" href="{% url 'comics:index' %}" style = "font-family: Garamond" >Comics Universal</a>
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'comics:index' %}" style = "font-family: Garamond" >Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'comics:allCharacters' %}" style = "font-family: Garamond" >All Characters</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'comics:marvelCharacters' %}" style = "font-family: Garamond" >Marvel Comics</a>
-      </li>
-        <li class="nav-item">
-        <a class="nav-link" href="{% url 'comics:dcCharacters' %}" style = "font-family: Garamond" >DC Comics</a>
-      </li>
-         <li class="nav-item">
-        <a class="nav-link" href="{% url 'comics:otherCharacters'%}" style = "font-family: Garamond" >Other Comics</a>
-      </li>
-        <li class="nav-item">
-        <a class="nav-link" href="#" style = "font-family: Garamond" >Log-In</a>
-      </li>
-    </ul>
-      <form class="form-inline my-2 my-lg-0" action = "{% url 'comics:searchResults' %}", method = "get">
-           <div class="input-group mb-1">
-                    <input name = "result" type="text" class="form-control"
-                      placeholder="Search">
-                   <button class="btn btn-dark"
-                     type="submit"
-                     id="addon-btn" formaction = "{% url 'comics:searchResults' %}">
-                     Search
-                   </button>
-          </div>
-</form>
-  </div>
-</nav>
+{% extends "base.html" %}
+{% block content %}
+<div style="min-height: 100vh;">
     <div class="text-decoration-underline" style = "font-family: Garamond, serif; font-size: 40px; text-align: center;">
     DC Characters
 </div>
@@ -76,3 +36,4 @@
     {% endfor %}
         </div>
 </div>
+{% endblock %}
