@@ -1,0 +1,9 @@
+.text-muted {
+    color: black !important;
+}
+
+.alert,
+.alert-danger,
+.alert-danger .alert-link {
+  color: black;
+}
