@@ -8,7 +8,7 @@ def register(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            return redirect('index')
+            return redirect('login')
     else:
         form = UserRegisterForm()
     return render(request, 'register.html', {'form': form})

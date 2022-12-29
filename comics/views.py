@@ -6,6 +6,7 @@ import json
 from django.views.generic import ListView
 from django.db.models import Q
 # Create your views here.
+
 def index(request):
     ironman = superheroImages.objects.filter(name = "Iron Man")
     spiderman = superheroImages.objects.filter(name = "Spider-Man")
@@ -83,6 +84,7 @@ def marvelCharacters(request):
     bad_marvel_set = superheroBiography.objects.filter(publisher = "Marvel Comics", alignment = "bad")
     return render(request, 'marvelCharacters.html', {'goodMarvelCharacters': good_marvel_set, 'badMarvelCharacters':
         bad_marvel_set})
+
 def dcCharacters(request):
     good_dc_set = superheroBiography.objects.filter(publisher = "DC Comics", alignment = "good")
     bad_dc_set = superheroBiography.objects.filter(publisher = "DC Comics", alignment = "bad")
@@ -147,6 +149,7 @@ def createSuperhero():
         oneWork.save()
         oneConnection.save()
         oneImage.save()
+
 class SearchResultsView(ListView):
     model = superheroImages
     template_name ='searchResults.html'
