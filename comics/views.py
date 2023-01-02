@@ -159,3 +159,6 @@ class SearchResultsView(ListView):
             Q(name__contains=query)
         )
         return object_list
+
+def edit(request):
+    return render(request, 'edit.html')
