@@ -9,6 +9,6 @@ urlpatterns = [
     path('dccharacters/', views.dcCharacters, name = 'dcCharacters'),
     path('othercharacters/', views.otherCharacters, name = 'otherCharacters'),
     path('results/', views.SearchResultsView.as_view(), name = "searchResults"),
-    path('edit/', views.edit, name = 'edit'),
+    path('<name>/edit/', views.edit, name = 'edit'),
     path('<name>/', views.characterInfo, name='characterInfo'),
 ]

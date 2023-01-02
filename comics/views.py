@@ -3,6 +3,7 @@ from django.http import HttpResponse
 import requests
 from .models import superheroPowerstats, superheroAppearance, superheroBiography, superheroWork, superheroConnections, superheroImages
 import json
+from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView
 from django.db.models import Q
 # Create your views here.
@@ -160,5 +161,6 @@ class SearchResultsView(ListView):
         )
         return object_list
 
-def edit(request):
+@login_required
+def edit(request, name):
     return render(request, 'edit.html')
