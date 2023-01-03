@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 app_name = 'comics'
 
 urlpatterns = [
@@ -11,4 +13,4 @@ urlpatterns = [
     path('results/', views.SearchResultsView.as_view(), name = "searchResults"),
     path('<name>/edit/', views.edit, name = 'edit'),
     path('<name>/', views.characterInfo, name='characterInfo'),
-]
+] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

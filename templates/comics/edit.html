@@ -2,9 +2,11 @@
 {% block content %}
 {% load crispy_forms_tags %}
 <div style="min-height: 100vh; font-family: Garamond, serif; color: black !important;">
-    <form method = "POST">
+    <form method = "POST" enctype = "multipart/form-data">
         {% csrf_token %}
         <fieldset class = "form-group">
+            <legend class = "border-bottom mb-4" style = "font-weight: bold">Image</legend>
+            {{ image_form|crispy }}
             <legend class = "border-bottom mb-4" style = "font-weight: bold">Biography</legend>
             {{ sb_form|crispy }}
             <legend class = "border-bottom mb-4" style = "font-weight: bold">Appearance</legend>

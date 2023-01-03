@@ -9,7 +9,7 @@
             Edit
     </a>
     </div>
-    <img class = "accordion-body" style="border-radius: 15%; margin-right: 2.5%; float: right" src="{{image.medium}}" width="300" height="350">
+    <img class = "accordion-body" style="border-radius: 15%; margin-right: 2.5%; float: right" src= {{image.medium.url}} onError = "this.src = '{{image.medium}}'" width="300" height="350">
     <div class="text-md-left" style = "font-family: Garamond, serif; font-size: 30px; font-weight: bold">
         Biography
      </div>

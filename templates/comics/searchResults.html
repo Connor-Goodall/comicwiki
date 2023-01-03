@@ -9,7 +9,7 @@
 <div class = "row">
 {% for superhero in object_list %}
     <div class="col-sm-3 mb-3">
-        <img class = "accordion-body" style="border-radius: 15%;" src="{{superhero.medium}}" width="200" height="250">
+        <img class = "accordion-body" style="border-radius: 15%;" src= {{superhero.medium.url}} onError = "this.src = '{{superhero.medium}}'" width="200" height="250">
         <div class="text-md-left" style = "font-family: Garamond, serif; font-size: 30px;">
     <a href="/comics/{{superhero.name}}" class = "text-decoration-none">
             {{superhero.name}}

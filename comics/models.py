@@ -42,6 +42,6 @@ class superheroConnections(models.Model):
 
 class superheroImages(models.Model):
     name = models.CharField(max_length = 100)
-    small = models.ImageField()
-    medium = models.ImageField()
+    small = models.ImageField(upload_to = 'images')
+    medium = models.ImageField(upload_to = 'images')
     large = models.ImageField()
