@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 import requests
 from .models import superheroPowerstats, superheroAppearance, superheroBiography, superheroWork, superheroConnections, superheroImages
@@ -6,6 +6,7 @@ import json
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView
 from django.db.models import Q
+from .forms import SuperheroBiographyForm
 # Create your views here.
 
 def index(request):
@@ -163,4 +164,12 @@ class SearchResultsView(ListView):
 
 @login_required
 def edit(request, name):
-    return render(request, 'edit.html')
+    biography = superheroBiography.objects.filter(name = name).first()
+    if request.method == 'POST':
+        sb_form = SuperheroBiographyForm(request.POST, instance = biography)
+        if sb_form.is_valid():
+            sb_form.save()
+            return redirect(f"/comics/{name}/")
+    else:
+        sb_form = SuperheroBiographyForm(instance = biography)
+        return render(request, 'edit.html', {'sb_form': sb_form})

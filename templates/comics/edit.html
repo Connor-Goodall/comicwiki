@@ -1,8 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
-<div style="overflow:auto;">
-     <div class="accordion-body" style = "text-align: center; font-family: Garamond, serif; font-size: 40px">
-         This is the edit page
-         </div>
+{% load crispy_forms_tags %}
+<div style="min-height: 100vh; font-family: Garamond, serif; color: black !important;">
+    <form method = "POST">
+        {% csrf_token %}
+        <fieldset class = "form-group">
+            <legend class = "border-bottom mb-4">Biography</legend>
+            {{ sb_form|crispy }}
+        </fieldset>
+        <div class = "form-group">
+            <button class = "btn btn-outline-info" type = "submit">Update</button>
+        </div>
+    </form>
 </div>
 {% endblock %}
