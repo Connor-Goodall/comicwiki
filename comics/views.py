@@ -6,7 +6,7 @@ import json
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView
 from django.db.models import Q
-from .forms import SuperheroBiographyForm
+from .forms import SuperheroBiographyForm, SuperheroAppearanceForm
 # Create your views here.
 
 def index(request):
@@ -165,11 +165,15 @@ class SearchResultsView(ListView):
 @login_required
 def edit(request, name):
     biography = superheroBiography.objects.filter(name = name).first()
+    appearance = superheroAppearance.objects.filter(name = name).first()
     if request.method == 'POST':
         sb_form = SuperheroBiographyForm(request.POST, instance = biography)
-        if sb_form.is_valid():
+        sa_form = SuperheroAppearanceForm(request.POST, instance = appearance)
+        if sb_form.is_valid() and sa_form.is_valid():
             sb_form.save()
+            sa_form.save()
             return redirect(f"/comics/{name}/")
     else:
         sb_form = SuperheroBiographyForm(instance = biography)
-        return render(request, 'edit.html', {'sb_form': sb_form})
+        sa_form = SuperheroAppearanceForm(instance = appearance)
+        return render(request, 'edit.html', {'sb_form': sb_form, 'sa_form': sa_form})
