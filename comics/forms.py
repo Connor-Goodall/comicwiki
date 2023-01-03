@@ -30,3 +30,8 @@ class SuperheroImagesForm(forms.ModelForm):
     class Meta:
         model = superheroImages
         fields = ['medium']
+
+class SuperheroNameForm(forms.ModelForm):
+    class Meta:
+        model = superheroBiography
+        fields = ['name']

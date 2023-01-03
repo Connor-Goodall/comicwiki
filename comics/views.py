@@ -6,7 +6,7 @@ import json
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView
 from django.db.models import Q
-from .forms import SuperheroBiographyForm, SuperheroAppearanceForm, SuperheroWorkForm, SuperheroConnectionsForm, SuperheroPowerstatsForm, SuperheroImagesForm
+from .forms import SuperheroBiographyForm, SuperheroAppearanceForm, SuperheroWorkForm, SuperheroConnectionsForm, SuperheroPowerstatsForm, SuperheroImagesForm, SuperheroNameForm
 # Create your views here.
 
 def index(request):
@@ -171,6 +171,7 @@ def edit(request, name):
     powerstats = superheroPowerstats.objects.filter(name = name).first()
     image = superheroImages.objects.filter(name = name).first()
     if request.method == 'POST':
+        sn_form = SuperheroNameForm(request.POST, instance = biography)
         sb_form = SuperheroBiographyForm(request.POST, instance = biography)
         sa_form = SuperheroAppearanceForm(request.POST, instance = appearance)
         sw_form = SuperheroWorkForm(request.POST, instance = work)
@@ -178,15 +179,22 @@ def edit(request, name):
         sp_form = SuperheroPowerstatsForm(request.POST, instance = powerstats)
         image_form = SuperheroImagesForm(request.POST, request.FILES, instance = image)
         if sb_form.is_valid() and sa_form.is_valid() and sw_form.is_valid() and sc_form.is_valid() and \
-                sp_form.is_valid() and image_form.is_valid():
+                sp_form.is_valid() and image_form.is_valid() and sn_form.is_valid():
             sb_form.save()
             sa_form.save()
             sw_form.save()
             sc_form.save()
             sp_form.save()
             image_form.save()
-            return redirect(f"/comics/{name}/")
+            sn_form.save()
+            superheroAppearance.objects.filter(name=name).update(name=biography.name)
+            superheroPowerstats.objects.filter(name=name).update(name=biography.name)
+            superheroWork.objects.filter(name=name).update(name=biography.name)
+            superheroConnections.objects.filter(name=name).update(name=biography.name)
+            superheroImages.objects.filter(name=name).update(name=biography.name)
+            return redirect(f"/comics/{biography.name}/")
     else:
+        sn_form = SuperheroNameForm(instance = biography)
         sb_form = SuperheroBiographyForm(instance = biography)
         sa_form = SuperheroAppearanceForm(instance = appearance)
         sw_form = SuperheroWorkForm(instance = work)
@@ -194,4 +202,5 @@ def edit(request, name):
         sp_form = SuperheroPowerstatsForm(instance = powerstats)
         image_form = SuperheroImagesForm(instance = image)
         return render(request, 'edit.html', {'sb_form': sb_form, 'sa_form': sa_form, 'sw_form': sw_form,
-                                             'sc_form': sc_form, 'sp_form': sp_form, 'image_form': image_form})
+                                             'sc_form': sc_form, 'sp_form': sp_form, 'image_form': image_form,
+                                             'sn_form': sn_form})

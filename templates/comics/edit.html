@@ -5,6 +5,8 @@
     <form method = "POST" enctype = "multipart/form-data">
         {% csrf_token %}
         <fieldset class = "form-group">
+            <legend class = "border-bottom mb-4" style = "font-weight: bold">Name</legend>
+            {{ sn_form|crispy }}
             <legend class = "border-bottom mb-4" style = "font-weight: bold">Image</legend>
             {{ image_form|crispy }}
             <legend class = "border-bottom mb-4" style = "font-weight: bold">Biography</legend>

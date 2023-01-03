@@ -30,6 +30,7 @@ class superheroBiography(models.Model):
     publisher = models.CharField(max_length = 100)
     alignment = models.CharField(max_length = 50, default = "neutral")
 
+
 class superheroWork(models.Model):
     name = models.CharField(max_length = 100)
     occupation = models.CharField(max_length = 500)
