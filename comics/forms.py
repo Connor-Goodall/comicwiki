@@ -1,5 +1,5 @@
 from django import forms
-from .models import superheroBiography, superheroAppearance, superheroWork, superheroConnections
+from .models import superheroBiography, superheroAppearance, superheroWork, superheroConnections, superheroPowerstats
 
 class SuperheroBiographyForm(forms.ModelForm):
     class Meta:
@@ -20,3 +20,8 @@ class SuperheroConnectionsForm(forms.ModelForm):
     class Meta:
         model = superheroConnections
         fields = ['groupAffiliation', 'relatives']
+
+class SuperheroPowerstatsForm(forms.ModelForm):
+    class Meta:
+        model = superheroPowerstats
+        fields = ['intelligence', 'strength', 'speed', 'durability', 'power', 'combat']

@@ -6,7 +6,7 @@ import json
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView
 from django.db.models import Q
-from .forms import SuperheroBiographyForm, SuperheroAppearanceForm, SuperheroWorkForm, SuperheroConnectionsForm
+from .forms import SuperheroBiographyForm, SuperheroAppearanceForm, SuperheroWorkForm, SuperheroConnectionsForm, SuperheroPowerstatsForm
 # Create your views here.
 
 def index(request):
@@ -168,21 +168,26 @@ def edit(request, name):
     appearance = superheroAppearance.objects.filter(name = name).first()
     work = superheroWork.objects.filter(name = name).first()
     connections = superheroConnections.objects.filter(name = name).first()
+    powerstats = superheroPowerstats.objects.filter(name = name).first()
     if request.method == 'POST':
         sb_form = SuperheroBiographyForm(request.POST, instance = biography)
         sa_form = SuperheroAppearanceForm(request.POST, instance = appearance)
         sw_form = SuperheroWorkForm(request.POST, instance = work)
         sc_form = SuperheroConnectionsForm(request.POST, instance = connections)
-        if sb_form.is_valid() and sa_form.is_valid() and sw_form.is_valid() and sc_form.is_valid():
+        sp_form = SuperheroPowerstatsForm(request.POST, instance = powerstats)
+        if sb_form.is_valid() and sa_form.is_valid() and sw_form.is_valid() and sc_form.is_valid() and \
+                sp_form.is_valid():
             sb_form.save()
             sa_form.save()
             sw_form.save()
             sc_form.save()
+            sp_form.save()
             return redirect(f"/comics/{name}/")
     else:
         sb_form = SuperheroBiographyForm(instance = biography)
         sa_form = SuperheroAppearanceForm(instance = appearance)
         sw_form = SuperheroWorkForm(instance = work)
         sc_form = SuperheroConnectionsForm(instance = connections)
+        sp_form = SuperheroPowerstatsForm(instance = powerstats)
         return render(request, 'edit.html', {'sb_form': sb_form, 'sa_form': sa_form, 'sw_form': sw_form,
-                                             'sc_form': sc_form})
+                                             'sc_form': sc_form, 'sp_form': sp_form})
