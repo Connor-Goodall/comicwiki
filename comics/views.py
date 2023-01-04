@@ -6,7 +6,7 @@ import json
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView
 from django.db.models import Q
-from .forms import SuperheroBiographyForm, SuperheroAppearanceForm, SuperheroWorkForm, SuperheroConnectionsForm, SuperheroPowerstatsForm, SuperheroImagesForm, SuperheroNameForm
+from .forms import SuperheroBiographyForm, SuperheroAppearanceForm, SuperheroWorkForm, SuperheroConnectionsForm, SuperheroPowerstatsForm, SuperheroImagesForm, SuperheroNameForm, SuperheroCreationForm
 # Create your views here.
 
 def index(request):
@@ -77,26 +77,26 @@ def characterInfo(request, name):
                                                   'connections': characterConnections[0], 'powerstats': characterPowerstats[0]})
 
 def allCharacters(request):
-    character_set = superheroBiography.objects.all()
+    character_set = superheroBiography.objects.all().order_by("name")
     return render(request, 'allCharacters.html', {'characters': character_set})
 
 
 def marvelCharacters(request):
-    good_marvel_set = superheroBiography.objects.filter(publisher = "Marvel Comics", alignment = "good")
-    bad_marvel_set = superheroBiography.objects.filter(publisher = "Marvel Comics", alignment = "bad")
+    good_marvel_set = superheroBiography.objects.filter(publisher = "Marvel Comics", alignment = "good").order_by("name")
+    bad_marvel_set = superheroBiography.objects.filter(publisher = "Marvel Comics", alignment = "bad").order_by("name")
     return render(request, 'marvelCharacters.html', {'goodMarvelCharacters': good_marvel_set, 'badMarvelCharacters':
         bad_marvel_set})
 
 def dcCharacters(request):
-    good_dc_set = superheroBiography.objects.filter(publisher = "DC Comics", alignment = "good")
-    bad_dc_set = superheroBiography.objects.filter(publisher = "DC Comics", alignment = "bad")
+    good_dc_set = superheroBiography.objects.filter(publisher = "DC Comics", alignment = "good").order_by("name")
+    bad_dc_set = superheroBiography.objects.filter(publisher = "DC Comics", alignment = "bad").order_by("name")
     return render(request, 'dcCharacters.html', {'goodDCCharacters': good_dc_set, 'badDCCharacters': bad_dc_set})
 
 def otherCharacters(request):
-    lucasfilm = superheroBiography.objects.filter(publisher = "George Lucas")
-    startrek = superheroBiography.objects.filter(publisher = "Star Trek")
-    manga = superheroBiography.objects.filter(publisher = "Shueisha")
-    darkHorse = superheroBiography.objects.filter(publisher = "Dark Horse Comics")
+    lucasfilm = superheroBiography.objects.filter(publisher = "George Lucas").order_by("name")
+    startrek = superheroBiography.objects.filter(publisher = "Star Trek").order_by("name")
+    manga = superheroBiography.objects.filter(publisher = "Shueisha").order_by("name")
+    darkHorse = superheroBiography.objects.filter(publisher = "Dark Horse Comics").order_by("name")
     return render(request, 'otherCharacters.html', {'lucasfilmCharacters': lucasfilm, 'startrekCharacters': startrek,
                                                     'mangaCharacters': manga, 'darkHorseCharacters': darkHorse})
 def createSuperhero():
@@ -204,3 +204,30 @@ def edit(request, name):
         return render(request, 'edit.html', {'sb_form': sb_form, 'sa_form': sa_form, 'sw_form': sw_form,
                                              'sc_form': sc_form, 'sp_form': sp_form, 'image_form': image_form,
                                              'sn_form': sn_form})
+
+@login_required
+def addCharacter(request):
+    if request.method == 'POST':
+        character = SuperheroCreationForm(request.POST)
+        if character.is_valid():
+            character.save()
+            name = character.cleaned_data.get('name')
+            characterAppearance = superheroAppearance(name = name, gender = "-", race = "-", height = "-",
+                                                      weight = "-", eyeColor = "-", hairColor = "-")
+            characterWork = superheroWork(name = name, occupation = "-", base = "-")
+            characterConnections = superheroConnections(name = name, groupAffiliation = "-", relatives = "-")
+            characterPowerstats = superheroPowerstats(name = name, intelligence = 0, strength = 0, speed = 0,
+                                                      durability = 0, power = 0, combat = 0)
+            characterImages = superheroImages(name = name,
+            small = "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/sm/no-portrait.jpg",
+            medium = "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/md/no-portrait.jpg",
+            large = "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/images/lg/no-portrait.jpg")
+            characterAppearance.save()
+            characterWork.save()
+            characterConnections.save()
+            characterPowerstats.save()
+            characterImages.save()
+            return redirect('/comics/allcharacters')
+    else:
+        character = SuperheroCreationForm()
+        return render(request, 'addCharacter.html', {'character': character})

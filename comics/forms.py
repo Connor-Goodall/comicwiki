@@ -35,3 +35,11 @@ class SuperheroNameForm(forms.ModelForm):
     class Meta:
         model = superheroBiography
         fields = ['name']
+
+class SuperheroCreationForm(forms.ModelForm):
+    alignment_choices = [('good', 'Hero'), ('bad', 'Villian'), ('neutral', 'Anti-hero')]
+    alignment = forms.CharField(label = "What is the character's alignment?", widget = forms.Select(
+        choices = alignment_choices))
+    class Meta:
+        model = superheroBiography
+        fields = ['name', 'alignment']
