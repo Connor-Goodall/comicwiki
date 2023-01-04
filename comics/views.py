@@ -83,9 +83,10 @@ def allCharacters(request):
 
 def marvelCharacters(request):
     good_marvel_set = superheroBiography.objects.filter(publisher = "Marvel Comics", alignment = "good").order_by("name")
+    neutral_marvel_set = superheroBiography.objects.filter(publisher="Marvel Comics", alignment="neutral").order_by("name")
     bad_marvel_set = superheroBiography.objects.filter(publisher = "Marvel Comics", alignment = "bad").order_by("name")
-    return render(request, 'marvelCharacters.html', {'goodMarvelCharacters': good_marvel_set, 'badMarvelCharacters':
-        bad_marvel_set})
+    return render(request, 'marvelCharacters.html', {'goodMarvelCharacters': good_marvel_set, 'neutralMarvelCharacters':
+    neutral_marvel_set, 'badMarvelCharacters': bad_marvel_set})
 
 def dcCharacters(request):
     good_dc_set = superheroBiography.objects.filter(publisher = "DC Comics", alignment = "good").order_by("name")
