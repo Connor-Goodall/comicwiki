@@ -96,12 +96,11 @@ def dcCharacters(request):
                                                  'badDCCharacters': bad_dc_set})
 
 def otherPublishers(request):
-    otherPublishers = superheroBiography.objects.exclude(publisher="Marvel Comics").exclude(publisher="DC Comics").values('publisher').distinct()
+    otherPublishers = superheroBiography.objects.exclude(publisher="Marvel Comics").exclude(publisher="DC Comics").values('publisher').distinct().order_by("publisher")
     return render(request, 'otherPublishers.html', {'otherPublishers': otherPublishers})
 
 def otherCharacters(request, publisher):
-    publisherCharacters = superheroBiography.objects.filter(publisher = publisher)
-    print(publisherCharacters.values())
+    publisherCharacters = superheroBiography.objects.filter(publisher = publisher).order_by("name")
     return render(request, 'otherCharacters.html', {'otherCharacters': publisherCharacters, 'publisher': publisher})
 
 def createSuperhero():
