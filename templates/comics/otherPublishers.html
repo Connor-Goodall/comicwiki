@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="min-height: 100vh;">
+    <div class="text-decoration-underline" style = "font-family: Garamond, serif; font-size: 40px; text-align: center;">
+    Other Comic Publishers
+</div>
+    <div class="text-md-left" style = "font-family: Garamond, serif; font-size: 40px; text-align: center">
+    &nbsp
+</div>
+     <div class="row">
+        {% for publisher in otherPublishers %}
+         <div class="col-sm-3 mb-3">
+            <div class="text-md-start" style = "font-family: Garamond, serif; font-size: 20px;">
+                {{ publisher.publisher }}
+                </div>
+             </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}
