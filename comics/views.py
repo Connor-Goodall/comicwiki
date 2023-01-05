@@ -98,6 +98,12 @@ def dcCharacters(request):
 def otherPublishers(request):
     otherPublishers = superheroBiography.objects.exclude(publisher="Marvel Comics").exclude(publisher="DC Comics").values('publisher').distinct()
     return render(request, 'otherPublishers.html', {'otherPublishers': otherPublishers})
+
+def otherCharacters(request, publisher):
+    publisherCharacters = superheroBiography.objects.filter(publisher = publisher)
+    print(publisherCharacters.values())
+    return render(request, 'otherCharacters.html', {'otherCharacters': publisherCharacters, 'publisher': publisher})
+
 def createSuperhero():
     data = gettingAPI()
     for superhero in data:

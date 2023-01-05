@@ -13,5 +13,6 @@ urlpatterns = [
     path('results/', views.SearchResultsView.as_view(), name = "searchResults"),
     path('add/', views.addCharacter, name = 'addCharacter'),
     path('<name>/edit/', views.edit, name = 'edit'),
+    path('otherpublishers/<publisher>/', views.otherCharacters, name='otherCharacters'),
     path('<name>/', views.characterInfo, name='characterInfo'),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
