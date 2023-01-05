@@ -90,10 +90,13 @@ def marvelCharacters(request):
 
 def dcCharacters(request):
     good_dc_set = superheroBiography.objects.filter(publisher = "DC Comics", alignment = "good").order_by("name")
+    neutral_dc_set = superheroBiography.objects.filter(publisher="DC Comics", alignment="neutral").order_by("name")
     bad_dc_set = superheroBiography.objects.filter(publisher = "DC Comics", alignment = "bad").order_by("name")
-    return render(request, 'dcCharacters.html', {'goodDCCharacters': good_dc_set, 'badDCCharacters': bad_dc_set})
+    return render(request, 'dcCharacters.html', {'goodDCCharacters': good_dc_set, 'neutralDCCharacters': neutral_dc_set,
+                                                 'badDCCharacters': bad_dc_set})
 
 def otherCharacters(request):
+    print(superheroBiography.objects.exclude(publisher = "Marvel Comics").exclude(publisher = "DC Comics").values('publisher'))
     lucasfilm = superheroBiography.objects.filter(publisher = "George Lucas").order_by("name")
     startrek = superheroBiography.objects.filter(publisher = "Star Trek").order_by("name")
     manga = superheroBiography.objects.filter(publisher = "Shueisha").order_by("name")

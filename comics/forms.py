@@ -42,4 +42,4 @@ class SuperheroCreationForm(forms.ModelForm):
         choices = alignment_choices))
     class Meta:
         model = superheroBiography
-        fields = ['name', 'alignment']
+        fields = ['name', 'publisher', 'alignment']

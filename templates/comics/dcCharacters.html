@@ -4,36 +4,61 @@
     <div class="text-decoration-underline" style = "font-family: Garamond, serif; font-size: 40px; text-align: center;">
     DC Characters
 </div>
+     <div class = "accordion-body" style = "position: relative; left: 950px; font-family: Garamond, serif; font-size: 22px; ">
+        <a href="/comics/add" class = "text-decoration-none">
+            Add a DC Character
+        </a>
+     </div>
     <div class="text-md-left" style = "font-family: Garamond, serif; font-size: 40px; text-align: center">
-    &nbsp
-</div>
-    <div class="text-decoration-underline" style = "font-family: Garamond, serif; font-size: 30px; position: relative; left: 250px;">
-   Heroes
-</div>
-    <div class="col" style = "display: inline-block;">
-    {% for goodCharacter in goodDCCharacters %}
-        <div class="text-md-start" style = "font-family: Garamond, serif; font-size: 20px; ">
-
-    <a href="/comics/{{goodCharacter.name}}" class = "text-decoration-none" style = "position: relative; left: 250px;">
-            {{goodCharacter.name}}
-    </a>
-
-             </div>
-    {% endfor %}
+        &nbsp
     </div>
-    <div class="text-decoration-underline" style = "font-family: Garamond, serif; font-size: 30px; position: relative; left: 750px; top: -3230px;">
-        Villians
-    </div>
-    <div class="col" style = "display: inline-block;">
-    {% for badCharacter in badDCCharacters %}
-        <div class="text-md-start" style = "font-family: Garamond, serif; font-size: 20px;">
+     <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <div class="text-decoration-underline" style = "font-family: Garamond, serif; font-size: 30px;">
+                    Heroes
+                </div>
+                <div class="col" style = "display: inline-block;">
+                {% for goodCharacter in goodDCCharacters %}
+                    <div class="text-md-start" style = "font-family: Garamond, serif; font-size: 20px; ">
+                        <a href="/comics/{{goodCharacter.name}}" class = "text-decoration-none">
+                            {{goodCharacter.name}}
+                        </a>
 
-    <a href="/comics/{{badCharacter.name}}" class = "text-decoration-none" style = "position: relative; left: 750px; top: -3230px;">
-            {{badCharacter.name}}
-    </a>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+            <div class = "col-sm">
+                <div class="text-decoration-underline" style = "font-family: Garamond, serif; font-size: 30px;">
+                    Anti-Heroes
+                </div>
+                <div class = "col" style = "display: inline-block;">
+                    {% for neutralCharacter in neutralDCCharacters %}
+                    <div class="text-md-start" style = "font-family: Garamond, serif; font-size: 20px;">
+                      <a href="/comics/{{neutralCharacter.name}}" class = "text-decoration-none">
+                            {{neutralCharacter.name}}
+                         </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="text-decoration-underline" style = "font-family: Garamond, serif; font-size: 30px;">
+                    Villians
+                </div>
+                <div class="col" style = "display: inline-block;">
+                {% for badCharacter in badDCCharacters %}
+                     <div class="text-md-start" style = "font-family: Garamond, serif; font-size: 20px;">
+                         <a href="/comics/{{badCharacter.name}}" class = "text-decoration-none">
+                            {{badCharacter.name}}
+                         </a>
 
-             </div>
-    {% endfor %}
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
         </div>
+     </div>
 </div>
 {% endblock %}
