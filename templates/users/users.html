@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="min-height: 100vh;">
+    <div class="text-decoration-underline" style = "font-family: Garamond, serif; font-size: 40px; text-align: center; ">
+        Users
+    </div>
+    <div class="text-md-left" style = "font-family: Garamond, serif; font-size: 40px; text-align: center">
+        &nbsp
+    </div>
+    <div class="text-decoration-underline" style = "font-family: Garamond, serif; font-size: 30px;">
+        Owner
+    </div>
+    <div class="text-md-start" style = "font-family: Garamond, serif; font-size: 20px; ">
+        {{ owner.username }}
+    </div>
+    <div class="text-md-left" style = "font-family: Garamond, serif; font-size: 40px; text-align: center">
+        &nbsp
+    </div>
+    <div class="text-decoration-underline" style = "font-family: Garamond, serif; font-size: 30px;">
+        Staff
+    </div>
+     <div class="row">
+         {% for worker in staff %}
+         <div class="col-sm-3 mb-3">
+            <div class="text-md-left" style = "font-family: Garamond, serif; font-size: 20px">
+                {{ worker.username }}
+            </div>
+         </div>
+         {% endfor %}
+     </div>
+    <div class="text-md-left" style = "font-family: Garamond, serif; font-size: 40px; text-align: center">
+        &nbsp
+    </div>
+    <div class="text-decoration-underline" style = "font-family: Garamond, serif; font-size: 30px;">
+        Members
+    </div>
+    <div class="row">
+         {% for member in members %}
+         <div class="col-sm-3 mb-3">
+            <div class="text-md-left" style = "font-family: Garamond, serif; font-size: 20px">
+                {{ member.username }}
+            </div>
+         </div>
+         {% endfor %}
+     </div>
+
+</div>
+{% endblock %}

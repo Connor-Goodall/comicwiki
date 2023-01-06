@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from .form import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 # Create your views here.
 
@@ -27,3 +28,9 @@ def profile(request):
         u_form = UserUpdateForm(instance = request.user)
         p_form = ProfileUpdateForm(instance = request.user.profile)
         return render(request, 'profile.html', {'u_form': u_form, 'p_form': p_form})
+
+def users(request):
+    owner = User.objects.filter(is_superuser = True)
+    staff = User.objects.filter(is_staff = True)
+    members = User.objects.exclude(is_staff = True)
+    return render(request, 'users.html', {'owner': owner[0], 'staff': staff, 'members': members})
