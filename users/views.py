@@ -38,3 +38,7 @@ def users(request):
 def profileInfo(request, username):
     user = User.objects.filter(username = username)
     return render(request, 'profileInfo.html', {'user': user[0]})
+
+@login_required
+def delete_confirm(request):
+    return render(request, 'delete_account.html')
