@@ -7,6 +7,18 @@
         <div class = "media-body">
             &nbsp
             <h2 class = "account-heading">Username: {{ user.username }}</h2>
+            <p class = "text-secondary" style = "color: black !important; font-size: 20px">
+                Favorite Hero: {{ user.profile.favorite_hero }}
+            </p>
+            <p class = "text-secondary" style = "color: black !important; font-size: 20px">
+                Favorite Anti-Hero: {{ user.profile.favorite_antihero }}
+            </p>
+            <p class = "text-secondary" style = "color: black !important; font-size: 20px">
+                Favorite Villian: {{ user.profile.favorite_villian }}
+            </p>
+            <p class = "text-secondary" style = "color: black !important; font-size: 20px">
+                Favorite Team: {{user.profile.favorite_team }}
+            </p>
         </div>
     </div>
 </div>

@@ -18,4 +18,4 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['image']
+        fields = ['favorite_hero','favorite_antihero','favorite_villian', 'favorite_team', 'image']
