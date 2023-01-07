@@ -11,7 +11,9 @@
         Owner
     </div>
     <div class="text-md-start" style = "font-family: Garamond, serif; font-size: 20px; ">
-        {{ owner.username }}
+        <a href="/users/{{owner.username}}" class="text-decoration-none">
+            {{owner.username}}
+        </a>
     </div>
     <div class="text-md-left" style = "font-family: Garamond, serif; font-size: 40px; text-align: center">
         &nbsp
@@ -23,7 +25,9 @@
          {% for worker in staff %}
          <div class="col-sm-3 mb-3">
             <div class="text-md-left" style = "font-family: Garamond, serif; font-size: 20px">
-                {{ worker.username }}
+                <a href="/users/{{worker.username}}" class="text-decoration-none">
+                    {{worker.username}}
+                </a>
             </div>
          </div>
          {% endfor %}
@@ -38,7 +42,9 @@
          {% for member in members %}
          <div class="col-sm-3 mb-3">
             <div class="text-md-left" style = "font-family: Garamond, serif; font-size: 20px">
-                {{ member.username }}
+                <a href="/users/{{member.username}}" class="text-decoration-none">
+                    {{member.username}}
+                </a>
             </div>
          </div>
          {% endfor %}

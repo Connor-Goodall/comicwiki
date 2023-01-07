@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<div class = "content section" style = "min-height: 100vh; font-family: Garamond, serif; color: black !important; text-align: center">
+    &nbsp
+    <div class = "media">
+        <img class = "rounded-circle account-img" src = "{{ user.profile.image.url }}" style = "text-align: center;">
+        <div class = "media-body">
+            &nbsp
+            <h2 class = "account-heading">Username: {{ user.username }}</h2>
+        </div>
+    </div>
+</div>
+{% endblock %}

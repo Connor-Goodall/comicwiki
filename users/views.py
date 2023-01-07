@@ -34,3 +34,7 @@ def users(request):
     staff = User.objects.filter(is_staff = True)
     members = User.objects.exclude(is_staff = True)
     return render(request, 'users.html', {'owner': owner[0], 'staff': staff, 'members': members})
+
+def profileInfo(request, username):
+    user = User.objects.filter(username = username)
+    return render(request, 'profileInfo.html', {'user': user[0]})
