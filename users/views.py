@@ -42,3 +42,9 @@ def profileInfo(request, username):
 @login_required
 def delete_confirm(request):
     return render(request, 'delete_account.html')
+
+@login_required
+def delete_done(request):
+    user = request.user
+    user.delete()
+    return render(request, 'delete_account_done.html')

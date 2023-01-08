@@ -1,8 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
-<div style="min-height: 100vh;">
-      <div class="text-md-left" style = "font-family: Garamond, serif; font-size: 30px; text-align: left">
+<div style="min-height: 100vh; text-align: center;">
+      <div class="text-md-left" style = "font-family: Garamond, serif; font-size: 30px;">
         Are you sure you want to delete your account?
       </div>
+    &nbsp
+    &nbsp
+    <button class = "btn btn-outline-info" onclick = "window.location.href='/delete_done';">
+      Yes
+    </button>
+    &nbsp
+    &nbsp
+    <button class = "btn btn-outline-info" onclick = "window.location.href='/profile';">
+      No
+    </button>
 </div>
 {% endblock %}

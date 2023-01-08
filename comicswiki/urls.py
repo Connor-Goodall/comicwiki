@@ -37,7 +37,8 @@ urlpatterns = [
     'password_reset_complete.html'), name = 'password_reset_complete'),
     path('users/', user_views.users, name = 'users'),
     path('users/<username>', user_views.profileInfo, name = 'profileInfo'),
-    path('delete/', user_views.delete_confirm, name = 'delete_confirm')
+    path('delete/', user_views.delete_confirm, name = 'delete_confirm'),
+    path('delete_done/', user_views.delete_done, name = 'delete_done'),
 ]
 
 if settings.DEBUG:
