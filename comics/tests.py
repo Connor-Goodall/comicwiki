@@ -246,3 +246,50 @@ class EditSuperheroWorkTest(TestCase):
         assert "Base: New York City, New York" in self.driver.page_source
     def tearDown(self):
         self.driver.quit()
+
+class EditSuperheroConnectionsTest(TestCase):
+    def setUp(self):
+        self.driver = webdriver.Firefox()
+        self.driver.get('http://127.0.0.1:8000/login/')
+        username = self.driver.find_element(By.XPATH, "//input[@name='username']")
+        username.send_keys("test")
+        password = self.driver.find_element(By.XPATH, "//input[@name='password']")
+        password.send_keys("TestPassword123!")
+        login = self.driver.find_element(By.XPATH, "//button[contains(@class, 'btn btn-outline-info')]")
+        login.click()
+        self.driver.get('http://127.0.0.1:8000/comics/Spider-Man (Miles Morales)/edit/')
+
+    def test_changeGroupAffiliation(self):
+        groupAffiliation = self.driver.find_element(By.XPATH, "//input[@name='groupAffiliation']")
+        length = len(groupAffiliation.get_attribute("value"))
+        count = 0
+        while (count < length):
+            groupAffiliation.send_keys(Keys.BACKSPACE)
+            count += 1
+        groupAffiliation.send_keys("Web Warriors, The Spider Society, Order of the Web, The Ultimates")
+        update = self.driver.find_element(By.XPATH, "//button[contains(@class, 'btn btn-outline-info')]")
+        self.driver.execute_script("arguments[0].scrollIntoView();", update)
+        time.sleep(2)
+        update.click()
+        assert "Group Affiliations: Web Warriors, The Spider Society, Order of the Web, The Ultimates" \
+               in self.driver.page_source
+    def test_changeRelatives(self):
+        relatives = self.driver.find_element(By.XPATH, "//input[@name='relatives']")
+        length = len(relatives.get_attribute("value"))
+        count = 0
+        while (count < length):
+            relatives.send_keys(Keys.BACKSPACE)
+            count += 1
+        relatives.send_keys("Gloria Morales (maternal grandmother), Unnamed paternal grandfather, Rio Morales (mother),"
+                            " Jefferson Davis (father), Aaron Davis (paternal uncle), Billie Morales (sister),'Asset 42 (clone, deceased)', "
+                            " Unnamed symbiote (former symbiote, deceased)")
+        update = self.driver.find_element(By.XPATH, "//button[contains(@class, 'btn btn-outline-info')]")
+        self.driver.execute_script("arguments[0].scrollIntoView();", update)
+        time.sleep(2)
+        update.click()
+        assert "Relatives: Gloria Morales (maternal grandmother), Unnamed paternal grandfather, Rio Morales (mother),"\
+               " Jefferson Davis (father), Aaron Davis (paternal uncle), Billie Morales (sister),'Asset 42 (clone, deceased)', "\
+               " Unnamed symbiote (former symbiote, deceased)" \
+               in self.driver.page_source
+    def tearDown(self):
+        self.driver.quit()
