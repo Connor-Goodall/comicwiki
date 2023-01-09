@@ -206,3 +206,43 @@ class EditSuperheroAppearanceTest(TestCase):
         assert "Hair Color: Black" in self.driver.page_source
     def tearDown(self):
         self.driver.quit()
+class EditSuperheroWorkTest(TestCase):
+    def setUp(self):
+        self.driver = webdriver.Firefox()
+        self.driver.get('http://127.0.0.1:8000/login/')
+        username = self.driver.find_element(By.XPATH, "//input[@name='username']")
+        username.send_keys("test")
+        password = self.driver.find_element(By.XPATH, "//input[@name='password']")
+        password.send_keys("TestPassword123!")
+        login = self.driver.find_element(By.XPATH, "//button[contains(@class, 'btn btn-outline-info')]")
+        login.click()
+        self.driver.get('http://127.0.0.1:8000/comics/Spider-Man (Miles Morales)/edit/')
+    def test_changeOccupation(self):
+        occupation = self.driver.find_element(By.XPATH, "//input[@name='occupation']")
+        length = len(occupation.get_attribute("value"))
+        count = 0
+        while (count < length):
+            occupation.send_keys(Keys.BACKSPACE)
+            count += 1
+        occupation.send_keys("Student, adventurer, vigilante")
+        update = self.driver.find_element(By.XPATH, "//button[contains(@class, 'btn btn-outline-info')]")
+        self.driver.execute_script("arguments[0].scrollIntoView();", update)
+        time.sleep(2)
+        update.click()
+        assert "Occupation: Student, adventurer, vigilante" in self.driver.page_source
+
+    def test_changeBase(self):
+        base = self.driver.find_element(By.XPATH, "//input[@name='base']")
+        length = len(base.get_attribute("value"))
+        count = 0
+        while (count < length):
+            base.send_keys(Keys.BACKSPACE)
+            count += 1
+        base.send_keys("New York City, New York")
+        update = self.driver.find_element(By.XPATH, "//button[contains(@class, 'btn btn-outline-info')]")
+        self.driver.execute_script("arguments[0].scrollIntoView();", update)
+        time.sleep(2)
+        update.click()
+        assert "Base: New York City, New York" in self.driver.page_source
+    def tearDown(self):
+        self.driver.quit()
