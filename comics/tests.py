@@ -377,3 +377,69 @@ class EditSuperheroPowerstatsTest(TestCase):
         assert "62" in self.driver.page_source
     def tearDown(self):
         self.driver.quit()
+
+class AddCharacterNoLoginTest(TestCase):
+    def setUp(self):
+        self.driver = webdriver.Firefox()
+        self.driver.get('http://127.0.0.1:8000/comics/allcharacters/')
+        addCharacter = self.driver.find_element(By.XPATH, "//a[@href='/comics/add']")
+        addCharacter.click()
+    def test_correctPage(self):
+        assert 'Log in' in self.driver.page_source
+
+    def tearDown(self):
+        self.driver.quit()
+
+class AddCharacterTest(TestCase):
+    def setUp(self):
+        self.driver = webdriver.Firefox()
+        self.driver.get('http://127.0.0.1:8000/login/')
+        username = self.driver.find_element(By.XPATH, "//input[@name='username']")
+        username.send_keys("test")
+        password = self.driver.find_element(By.XPATH, "//input[@name='password']")
+        password.send_keys("TestPassword123!")
+        login = self.driver.find_element(By.XPATH, "//button[contains(@class, 'btn btn-outline-info')]")
+        login.click()
+        self.driver.get('http://127.0.0.1:8000/comics/allcharacters/')
+        addCharacter = self.driver.find_element(By.XPATH, "//a[@href='/comics/add']")
+        addCharacter.click()
+    def test_correctPage(self):
+        assert 'Create a New Character Page' in self.driver.page_source
+    def test_addCharacter(self):
+        name = self.driver.find_element(By.XPATH, "//input[@name='name']")
+        name.send_keys("Agent Venom")
+        publisher = self.driver.find_element(By.XPATH, "//input[@name='publisher']")
+        publisher.send_keys("Marvel Comics")
+        create = self.driver.find_element(By.XPATH, "//button[contains(@class, 'btn btn-outline-info')]")
+        create.click()
+        self.driver.get('http://127.0.0.1:8000/comics/allcharacters/')
+        assert 'Agent Venom' in self.driver.page_source
+    def test_addMarvelCharacter(self):
+        name = self.driver.find_element(By.XPATH, "//input[@name='name']")
+        name.send_keys("Knull")
+        publisher = self.driver.find_element(By.XPATH, "//input[@name='publisher']")
+        publisher.send_keys("Marvel Comics")
+        create = self.driver.find_element(By.XPATH, "//button[contains(@class, 'btn btn-outline-info')]")
+        create.click()
+        self.driver.get('http://127.0.0.1:8000/comics/marvelcharacters/')
+        assert 'Knull' in self.driver.page_source
+    def test_addDCCharacter(self):
+        name = self.driver.find_element(By.XPATH, "//input[@name='name']")
+        name.send_keys("Vigilante")
+        publisher = self.driver.find_element(By.XPATH, "//input[@name='publisher']")
+        publisher.send_keys("DC Comics")
+        create = self.driver.find_element(By.XPATH, "//button[contains(@class, 'btn btn-outline-info')]")
+        create.click()
+        self.driver.get('http://127.0.0.1:8000/comics/dccharacters/')
+        assert 'Vigilante' in self.driver.page_source
+    def test_addOtherComicsCharacter(self):
+        name = self.driver.find_element(By.XPATH, "//input[@name='name']")
+        name.send_keys("Number 5")
+        publisher = self.driver.find_element(By.XPATH, "//input[@name='publisher']")
+        publisher.send_keys("Dark Horse Comics")
+        create = self.driver.find_element(By.XPATH, "//button[contains(@class, 'btn btn-outline-info')]")
+        create.click()
+        self.driver.get('http://127.0.0.1:8000/comics/otherpublishers/Dark Horse Comics/')
+        assert 'Number 5' in self.driver.page_source
+    def tearDown(self):
+        self.driver.quit()
