@@ -443,3 +443,29 @@ class AddCharacterTest(TestCase):
         assert 'Number 5' in self.driver.page_source
     def tearDown(self):
         self.driver.quit()
+
+class SearchTest(TestCase):
+    def setUp(self):
+        self.driver = webdriver.Firefox()
+        self.driver.get('http://127.0.0.1:8000/comics/')
+    def test_correctPage(self):
+        result = self.driver.find_element(By.XPATH, "//input[@name='result']")
+        result.send_keys("Batman")
+        search = self.driver.find_element(By.XPATH, "//button[contains(@class, 'btn btn-dark')]")
+        search.click()
+        assert 'Search Results' in self.driver.page_source
+    def test_correctMatch(self):
+        result = self.driver.find_element(By.XPATH, "//input[@name='result']")
+        result.send_keys("Spider-Man")
+        search = self.driver.find_element(By.XPATH, "//button[contains(@class, 'btn btn-dark')]")
+        search.click()
+        assert 'Spider-Man' in self.driver.page_source
+        assert 'Spider-Man (Miles Morales)' in self.driver.page_source
+    def test_noMatch(self):
+        result = self.driver.find_element(By.XPATH, "//input[@name='result']")
+        result.send_keys("Spider-Man")
+        search = self.driver.find_element(By.XPATH, "//button[contains(@class, 'btn btn-dark')]")
+        search.click()
+        assert 'Batman' not in self.driver.page_source
+    def tearDown(self):
+        self.driver.quit()
