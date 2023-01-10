@@ -152,5 +152,16 @@ class ProfileTest(TestCase):
         self.driver.get(f"http://127.0.0.1:8000/users/{name}")
         assert 'Username: cag3dmr' in self.driver.page_source
 
+    def test_changeEmail(self):
+        email = self.driver.find_element(By.XPATH, "//input[@name='email']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", email)
+        time.sleep(2)
+        email.clear()
+        email.send_keys("fakeemail@gmail.com")
+        update = self.driver.find_element(By.XPATH, "//button[contains(@class, 'btn btn-outline-info')]")
+        self.driver.execute_script("arguments[0].scrollIntoView();", update)
+        time.sleep(2)
+        update.click()
+        assert "Email: fakeemail@gmail.com" in self.driver.page_source
     def tearDown(self):
         self.driver.quit()

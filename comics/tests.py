@@ -293,3 +293,87 @@ class EditSuperheroConnectionsTest(TestCase):
                in self.driver.page_source
     def tearDown(self):
         self.driver.quit()
+class EditSuperheroPowerstatsTest(TestCase):
+    def setUp(self):
+        self.driver = webdriver.Firefox()
+        self.driver.get('http://127.0.0.1:8000/login/')
+        username = self.driver.find_element(By.XPATH, "//input[@name='username']")
+        username.send_keys("test")
+        password = self.driver.find_element(By.XPATH, "//input[@name='password']")
+        password.send_keys("TestPassword123!")
+        login = self.driver.find_element(By.XPATH, "//button[contains(@class, 'btn btn-outline-info')]")
+        login.click()
+        self.driver.get('http://127.0.0.1:8000/comics/Spider-Man (Miles Morales)/edit/')
+
+    def test_changeIntelligence(self):
+        intelligence = self.driver.find_element(By.XPATH, "//input[@name='intelligence']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", intelligence)
+        time.sleep(2)
+        intelligence.clear()
+        intelligence.send_keys(65)
+        update = self.driver.find_element(By.XPATH, "//button[contains(@class, 'btn btn-outline-info')]")
+        self.driver.execute_script("arguments[0].scrollIntoView();", update)
+        time.sleep(2)
+        update.click()
+        assert "65" in self.driver.page_source
+
+    def test_changeStrength(self):
+        strength = self.driver.find_element(By.XPATH, "//input[@name='strength']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", strength)
+        time.sleep(2)
+        strength.clear()
+        strength.send_keys(35)
+        update = self.driver.find_element(By.XPATH, "//button[contains(@class, 'btn btn-outline-info')]")
+        self.driver.execute_script("arguments[0].scrollIntoView();", update)
+        time.sleep(2)
+        update.click()
+        assert "35" in self.driver.page_source
+    def test_changeSpeed(self):
+        speed = self.driver.find_element(By.XPATH, "//input[@name='speed']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", speed)
+        time.sleep(2)
+        speed.clear()
+        speed.send_keys(25)
+        update = self.driver.find_element(By.XPATH, "//button[contains(@class, 'btn btn-outline-info')]")
+        self.driver.execute_script("arguments[0].scrollIntoView();", update)
+        time.sleep(2)
+        update.click()
+        assert "25" in self.driver.page_source
+
+    def test_changeDurability(self):
+        durability = self.driver.find_element(By.XPATH, "//input[@name='durability']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", durability)
+        time.sleep(2)
+        durability.clear()
+        durability.send_keys(30)
+        update = self.driver.find_element(By.XPATH, "//button[contains(@class, 'btn btn-outline-info')]")
+        self.driver.execute_script("arguments[0].scrollIntoView();", update)
+        time.sleep(2)
+        update.click()
+        assert "30" in self.driver.page_source
+
+    def test_changePower(self):
+        power = self.driver.find_element(By.XPATH, "//input[@name='power']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", power)
+        time.sleep(2)
+        power.clear()
+        power.send_keys(60)
+        update = self.driver.find_element(By.XPATH, "//button[contains(@class, 'btn btn-outline-info')]")
+        self.driver.execute_script("arguments[0].scrollIntoView();", update)
+        time.sleep(2)
+        update.click()
+        assert "60" in self.driver.page_source
+
+    def test_changeCombat(self):
+        combat = self.driver.find_element(By.XPATH, "//input[@name='combat']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", combat)
+        time.sleep(2)
+        combat.clear()
+        combat.send_keys(62)
+        update = self.driver.find_element(By.XPATH, "//button[contains(@class, 'btn btn-outline-info')]")
+        self.driver.execute_script("arguments[0].scrollIntoView();", update)
+        time.sleep(2)
+        update.click()
+        assert "62" in self.driver.page_source
+    def tearDown(self):
+        self.driver.quit()
