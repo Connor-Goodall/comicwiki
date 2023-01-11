@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block header %}
-    <div style="height: 200vh;">
+    <div style="height: 200vh; overflow-x: auto; overflow-y: hidden;">
    <head>
   <H1 class="d-flex justify-content-center" style="font-size: 75px; color:DarkSlateBlue; text-shadow: 4px 0 0 black, -4px 0 0 black, 0 4px 0 black, 0 -4px 0 black, 2px 2px black, -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black;">Comics Universal</H1>
   <p class="d-flex justify-content-center" style="margin-bottom: 5%; font-size: 30px; color: DarkSlateBlue; text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;"> Wiki
@@ -8,68 +8,96 @@
 </head>
         {% endblock %}
         {% block content %}
-<div class="text-md-left" style = "font-family: Garamond, serif; font-size: 30px; position: relative; left: 50px;">
-  Popular Marvel Characters
-</div>
-  <img class = "accordion-body" style="border-radius: 15%; position: relative; left: 100px;" src= {{ironman.medium.url}} onError = "this.src = '{{ironman.medium}}'" width="200" height="250">
-<div class="text-md-left" style = "font-family: Garamond, serif; font-size: 30px;">
- <a href="/comics/{{ironman.name}}" class = "text-decoration-none" style = "position: relative; left: 150px;">
-            {{ironman.name}}
-    </a>
-</div>
-   <img class = "accordion-body" style="border-radius: 15%; position: relative; left: 100px;" src= {{captain.medium.url}} onError = "this.src = '{{captain.medium}}'" width="200" height="250">
-<div class="text-md-left" style = "font-family: Garamond, serif; font-size: 30px;">
- <a href="/comics/{{captain.name}}" class = "text-decoration-none" style = "position: relative; left: 105px;">
-            {{captain.name}}
-    </a>
-</div>
-  <img class = "accordion-body" style="border-radius: 15%; position: relative; left: 100px;" src= {{spiderman.medium.url}} onError = "this.src = '{{spiderman.medium}}'" width="200" height="250">
-<div class="text-md-left" style = "font-family: Garamond, serif; font-size: 30px;">
- <a href="/comics/{{spiderman.name}}" class = "text-decoration-none" style = "position: relative; left: 130px;">
-            {{spiderman.name}}
-    </a>
-</div>
-  <div class="text-md-left" style = "font-family: Garamond, serif; font-size: 30px; position: relative; left: 475px; top: -930px;">
-  Popular DC Characters
-</div>
-    <img class = "accordion-body" style="border-radius: 15%; position: relative; left: 510px; top: -930px;" src= {{batman.medium.url}} onError = "this.src = '{{batman.medium}}'" width="200" height="250">
-<div class="text-md-left" style = "font-family: Garamond, serif; font-size: 30px;">
- <a href="/comics/{{batman.name}}" class = "text-decoration-none" style = "position: relative; left: 500px; top: -930px;">
-            {{batman.name}}
-    </a>
-</div>
-    <img class = "accordion-body" style="border-radius: 15%; position: relative; left: 510px; top: -930px;" src= {{superman.medium.url}} onError = "this.src = '{{superman.medium}}'" width="200" height="250">
-<div class="text-md-left" style = "font-family: Garamond, serif; font-size: 30px;">
- <a href="/comics/{{superman.name}}" class = "text-decoration-none" style = "position: relative; left: 550px; top: -930px;">
-            {{superman.name}}
-    </a>
-</div>
-    <img class = "accordion-body" style="border-radius: 15%; position: relative; left: 510px; top: -930px;" src= {{wonderWoman.medium.url}} onError = "this.src = '{{wonderWoman.medium}}'" width="200" height="250">
-<div class="text-md-left" style = "font-family: Garamond, serif; font-size: 30px;">
- <a href="/comics/{{wonderWoman.name}}" class = "text-decoration-none" style = "position: relative; left: 525px; top: -930px;">
-            {{wonderWoman.name}}
-    </a>
-</div>
-<div class="text-md-left" style = "font-family: Garamond, serif; font-size: 30px; position: relative; left: 825px; top: -1860px;">
-  Popular Other Comic Characters
-</div>
-        <img class = "accordion-body" style="border-radius: 15%; position: relative; left: 910px; top: -1860px;" src= {{darthVader.medium.url}} onError = "this.src = '{{darthVader.medium}}'" width="200" height="250">
-<div class="text-md-left" style = "font-family: Garamond, serif; font-size: 30px;">
- <a href="/comics/{{darthVader.name}}" class = "text-decoration-none" style = "position: relative; left: 930px; top: -1860px;">
-            {{darthVader.name}}
-    </a>
-</div>
- <img class = "accordion-body" style="border-radius: 15%; position: relative; left: 910px; top: -1860px;" src= {{goku.medium.url}} onError = "this.src = '{{goku.medium}}'"width="200" height="250">
-  <div class="text-md-left" style = "font-family: Garamond, serif; font-size: 30px;">
- <a href="/comics/{{goku.name}}" class = "text-decoration-none" style = "position: relative; left: 970px; top: -1860px;">
-            {{goku.name}}
-    </a>
-</div>
-   <img class = "accordion-body" style="border-radius: 15%; position: relative; left: 910px; top: -1860px;" src= {{onePunchMan.medium.url}} onError = "this.src = '{{onePunchMan.medium}}'" width="200" height="250">
- <div class="text-md-left" style = "font-family: Garamond, serif; font-size: 30px;">
- <a href="/comics/{{onePunchMan.name}}" class = "text-decoration-none" style = "position: relative; left: 920px; top: -1860px;">
-            {{onePunchMan.name}}
-    </a>
-</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <div class="text-md-left" style = "font-family: Garamond, serif; font-size: 20px; text-align: center;">
+                    Popular Marvel Characters
+                </div>
+                <div style = "text-align: center;">
+                    <img class = "accordion-body" style="border-radius: 15%;" src= {{ironman.medium.url}} onError = "this.src = '{{ironman.medium}}'" width="200" height="250">
+                </div>
+                <div class="text-md-left" style = "font-family: Garamond, serif; font-size: 20px; text-align: center;">
+                    <a href="/comics/{{ironman.name}}" class = "text-decoration-none" style = "">
+                        {{ironman.name}}
+                    </a>
+                </div>
+                <div style = "text-align: center;">
+                    <img class = "accordion-body" style="border-radius: 15%;" src= {{captain.medium.url}} onError = "this.src = '{{captain.medium}}'" width="200" height="250">
+                </div>
+                <div class="text-md-left" style = "font-family: Garamond, serif; font-size: 20px; text-align: center;">
+                    <a href="/comics/{{captain.name}}" class = "text-decoration-none" style = "">
+                        {{captain.name}}
+                    </a>
+                </div>
+                <div style = "text-align: center;">
+                    <img class = "accordion-body" style="border-radius: 15%;" src= {{spiderman.medium.url}} onError = "this.src = '{{spiderman.medium}}'" width="200" height="250">
+                </div>
+                <div class="text-md-left" style = "font-family: Garamond, serif; font-size: 20px; text-align:center;">
+                    <a href="/comics/{{spiderman.name}}" class = "text-decoration-none" style = "">
+                        {{spiderman.name}}
+                    </a>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="text-md-left" style = "font-family: Garamond, serif; font-size: 20px; text-align: center;">
+                    Popular DC Characters
+                </div>
+                <div style = "text-align: center;">
+                    <img class = "accordion-body" style="border-radius: 15%;" src= {{batman.medium.url}} onError = "this.src = '{{batman.medium}}'" width="200" height="250">
+                </div>
+                <div class="text-md-left" style = "font-family: Garamond, serif; font-size: 20px; text-align: center;">
+                    <a href="/comics/{{batman.name}}" class = "text-decoration-none" style = "">
+                        {{batman.name}}
+                    </a>
+                </div>
+                <div style = "text-align: center;">
+                    <img class = "accordion-body" style="border-radius: 15%;" src= {{superman.medium.url}} onError = "this.src = '{{superman.medium}}'" width="200" height="250">
+                </div>
+                <div class="text-md-left" style = "font-family: Garamond, serif; font-size: 20px; text-align: center;">
+                    <a href="/comics/{{superman.name}}" class = "text-decoration-none" style = "">
+                        {{superman.name}}
+                    </a>
+                </div>
+                <div style = "text-align: center;">
+                    <img class = "accordion-body" style="border-radius: 15%;" src= {{wonderWoman.medium.url}} onError = "this.src = '{{wonderWoman.medium}}'" width="200" height="250">
+                </div>
+                <div class="text-md-left" style = "font-family: Garamond, serif; font-size: 20px; text-align: center;">
+                    <a href="/comics/{{wonderWoman.name}}" class = "text-decoration-none" style = "">
+                        {{wonderWoman.name}}
+                    </a>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="text-md-left" style = "font-family: Garamond, serif; font-size: 20px; text-align: center;">
+                    Popular Other Comic Characters
+                </div>
+                <div style = "text-align: center;">
+                    <img class = "accordion-body" style="border-radius: 15%;" src= {{darthVader.medium.url}} onError = "this.src = '{{darthVader.medium}}'" width="200" height="250">
+                </div>
+                <div class="text-md-left" style = "font-family: Garamond, serif; font-size: 20px; text-align: center;">
+                    <a href="/comics/{{darthVader.name}}" class = "text-decoration-none" style = "">
+                        {{darthVader.name}}
+                    </a>
+                </div>
+                <div style = "text-align: center;">
+                    <img class = "accordion-body" style="border-radius: 15%;" src= {{goku.medium.url}} onError = "this.src = '{{goku.medium}}'"width="200" height="250">
+                </div>
+                <div class="text-md-left" style = "font-family: Garamond, serif; font-size: 20px; text-align: center;">
+                    <a href="/comics/{{goku.name}}" class = "text-decoration-none" style = "">
+                        {{goku.name}}
+                    </a>
+                </div>
+                <div style = "text-align: center;">
+                    <img class = "accordion-body" style="border-radius: 15%;" src= {{onePunchMan.medium.url}} onError = "this.src = '{{onePunchMan.medium}}'" width="200" height="250">
+                </div>
+                <div class="text-md-left" style = "font-family: Garamond, serif; font-size: 20px; text-align: center;">
+                    <a href="/comics/{{onePunchMan.name}}" class = "text-decoration-none" style = "">
+                        {{onePunchMan.name}}
+                    </a>
+                </div>
+            </div>
         </div>
+    </div>
+</div>
 {% endblock %}
