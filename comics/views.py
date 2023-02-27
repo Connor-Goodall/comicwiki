@@ -162,7 +162,7 @@ class SearchResultsView(ListView):
     def get_queryset(self):
         query = self.request.GET.get("result")
         object_list = superheroImages.objects.filter(
-            Q(name__contains=query)
+            Q(name__icontains=query)
         )
         return object_list
 
